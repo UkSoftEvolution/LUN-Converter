@@ -3,8 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:LUN_Converter.ViewModel"
         mc:Ignorable="d"
+        x:Name="Main"
         Title="LUN Converter" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="{x:Null}" AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="24"/>
@@ -42,7 +49,7 @@
             <!--WINDOW BUTTONS-->
             <Grid Grid.Column="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Button Style="{DynamicResource WindowButton}" ToolTip="Свернуть">
+                    <Button Style="{DynamicResource WindowButton}" Command="{Binding Minimized}" CommandParameter="{Binding ElementName=Main}" ToolTip="Свернуть">
                         <Viewbox Width="20" Height="20">
                             <Canvas Width="24" Height="10">
                                 <Path
@@ -51,7 +58,7 @@
                             </Canvas>
                         </Viewbox>
                     </Button>
-                    <Button Style="{DynamicResource WindowButton}" ToolTip="Закрыть">
+                    <Button Style="{DynamicResource WindowButton}" Command="{Binding Close}" CommandParameter="{Binding ElementName=Main}" ToolTip="Закрыть">
                         <Viewbox Width="20" Height="20">
                             <Canvas Width="24" Height="24">
                                 <Path
