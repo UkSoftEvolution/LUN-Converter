@@ -3,4 +3,5 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <FontFamily x:Key="Fonts.BaseFont">#Segoe UI</FontFamily>
     <system:Double x:Key="Fonts.Title">19</system:Double>
+    <system:Double x:Key="Fonts.Button.Content">20</system:Double>
 </ResourceDictionary>

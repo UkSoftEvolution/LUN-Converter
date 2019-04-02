@@ -84,7 +84,7 @@
             <Grid Grid.Row="0">
                 <Frame
                     NavigationUIVisibility="Hidden"
-                    Source="{Binding ActivePage}"/>
+                    Content="{Binding ActivePage}"/>
             </Grid>
 
             <!--CAPTION TEAM-->

@@ -8,6 +8,105 @@
       Title="Контент">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid Grid.Column="1" Opacity="0.95">
+            <StackPanel VerticalAlignment="Center">
+                <!--BUTTON "Select a file"-->
+                <Grid Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--ICON-->
+                    <Grid Grid.Column="0" Background="{StaticResource Colors.Icons.Background}">
+                        <Viewbox Width="30" Height="30">
+                            <Canvas Width="24" Height="24">
+                                <Path Data="M14,2H6C4.89,2 4,2.89 4,4V20C4,21.11 4.89,22 6,22H18C19.11,22 20,21.11 20,20V8L14,2M12,19L8,15H10.5V12H13.5V15H16L12,19M13,9V3.5L18.5,9H13Z"
+                                      Fill="{StaticResource Colors.Icons}"/>
+                            </Canvas>
+                        </Viewbox>
+                    </Grid>
+                    <!--BUTTON-->
+                    <Grid Grid.Column="1">
+                        <Button
+                            Style="{DynamicResource ContentButton}"
+                            Content="Выбрать файл"
+                            IsEnabled="True"/>
+                    </Grid>
+                </Grid>
+                <!--NAME FILE-->
+                <Grid Margin="0 0 0 5">
+                    <TextBlock
+                        Foreground="{StaticResource Button.Content.Disabled.Foreground}"
+                        FontFamily="{StaticResource Fonts.BaseFont}"
+                        Visibility="Visible"
+                        Text="NAME FILE.txt"
+                        FontSize="13"
+                        HorizontalAlignment="Center"/>
+                </Grid>
+                <!--BUTTON "Convert to xml"-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--ICON-->
+                    <Grid Grid.Column="0" Background="{StaticResource Colors.Icons.Background}">
+                        <Viewbox Width="30" Height="30">
+                            <Canvas Width="24" Height="24">
+                                <Path Data="M14,12H19.5L14,6.5V12M8,5H15L21,11V21A2,2 0 0,1 19,23H8C6.89,23 6,22.1 6,21V18H11V20L15,17L11,14V16H6V7A2,2 0 0,1 8,5M13.5,3H4V16H6V18H4A2,2 0 0,1 2,16V3A2,2 0 0,1 4,1H11.5L13.5,3Z"
+                                      Fill="{StaticResource Colors.Icons}"/>
+                            </Canvas>
+                        </Viewbox>
+                    </Grid>
+                    <!--BUTTON-->
+                    <Grid Grid.Column="1">
+                        <Button
+                            Style="{DynamicResource ContentButton}"
+                            Name="convert"
+                            Content="Конвертировать в XML"
+                            IsEnabled="False"/>
+                    </Grid>
+                </Grid>
+                <!--PROGRESS-->
+                <Grid Margin="0 0 0 5">
+                    <ProgressBar
+                        Background="{x:Null}"
+                        Foreground="#FF7AAD00"
+                        Value="50"
+                        BorderThickness="0"
+                        Height="2"
+                        IsIndeterminate="True"/>
+                </Grid>
+                <!--BUTTON "Save file"-->
+                <Grid Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--ICON-->
+                    <Grid Grid.Column="0" Background="{StaticResource Colors.Icons.Background}">
+                        <Viewbox Width="30" Height="30">
+                            <Canvas Width="24" Height="24">
+                                <Path Data="M13,9H18.5L13,3.5V9M6,2H14L20,8V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V4C4,2.89 4.89,2 6,2M6.12,15.5L9.86,19.24L11.28,17.83L8.95,15.5L11.28,13.17L9.86,11.76L6.12,15.5M17.28,15.5L13.54,11.76L12.12,13.17L14.45,15.5L12.12,17.83L13.54,19.24L17.28,15.5Z"
+                                      Fill="{StaticResource Colors.Icons}"/>
+                            </Canvas>
+                        </Viewbox>
+                    </Grid>
+                    <!--BUTTON-->
+                    <Grid Grid.Column="1">
+                        <Button
+                            Style="{DynamicResource ContentButton}"
+                            Content="Сохранить файл"
+                            IsEnabled="False"/>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
