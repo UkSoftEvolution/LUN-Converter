@@ -3,9 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:viewmodel="clr-namespace:LUN_Converter.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Контент">
+
+    <Page.DataContext>
+        <viewmodel:ContentViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,17 +40,17 @@
                     <Grid Grid.Column="1">
                         <Button
                             Style="{DynamicResource ContentButton}"
-                            Content="Выбрать файл"
-                            IsEnabled="True"/>
+                            IsEnabled="{Binding SelectFile}"
+                            Command="{Binding SelectFile_Click}"
+                            Content="Выбрать файл"/>
                     </Grid>
                 </Grid>
                 <!--NAME FILE-->
-                <Grid Margin="0 0 0 5">
+                <Grid Margin="0 0 0 5" Visibility="{Binding Visibil}">
                     <TextBlock
                         Foreground="{StaticResource Button.Content.Disabled.Foreground}"
                         FontFamily="{StaticResource Fonts.BaseFont}"
-                        Visibility="Visible"
-                        Text="NAME FILE.txt"
+                        Text="{Binding NameFile}"
                         FontSize="13"
                         HorizontalAlignment="Center"/>
                 </Grid>
@@ -68,20 +73,21 @@
                     <Grid Grid.Column="1">
                         <Button
                             Style="{DynamicResource ContentButton}"
-                            Name="convert"
-                            Content="Конвертировать в XML"
-                            IsEnabled="False"/>
+                            IsEnabled="{Binding ConvertXML}"
+                            Command="{Binding ConvertXML_Click}"
+                            Content="Конвертировать в XML"/>
                     </Grid>
                 </Grid>
                 <!--PROGRESS-->
                 <Grid Margin="0 0 0 5">
                     <ProgressBar
+                        IsIndeterminate="{Binding Indeterminate}"
+                        Value="{Binding ProgressValue}"
+                        Maximum="{Binding ProgressMaximum}"
                         Background="{x:Null}"
                         Foreground="#FF7AAD00"
-                        Value="50"
                         BorderThickness="0"
-                        Height="2"
-                        IsIndeterminate="True"/>
+                        Height="2"/>
                 </Grid>
                 <!--BUTTON "Save file"-->
                 <Grid Margin="0 0 0 5">
@@ -102,8 +108,9 @@
                     <Grid Grid.Column="1">
                         <Button
                             Style="{DynamicResource ContentButton}"
-                            Content="Сохранить файл"
-                            IsEnabled="False"/>
+                            IsEnabled="{Binding SaveFile}"
+                            Command="{Binding SaveFile_Click}"
+                            Content="Сохранить файл"/>
                     </Grid>
                 </Grid>
             </StackPanel>

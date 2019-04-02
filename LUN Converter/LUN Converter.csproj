@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Other\MVVM.cs" />
     <Compile Include="Other\RelayCommand.cs" />
+    <Compile Include="ViewModel\ContentViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\ContentView.xaml.cs">
       <DependentUpon>ContentView.xaml</DependentUpon>
