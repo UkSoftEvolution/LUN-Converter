@@ -133,5 +133,11 @@
   <ItemGroup>
     <Folder Include="Model\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LUN Converter.Files\LUN Converter.Files.csproj">
+      <Project>{f183a13c-a1f8-4567-9366-5fc2d9f48079}</Project>
+      <Name>LUN Converter.Files</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

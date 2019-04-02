@@ -1,4 +1,5 @@
-﻿using LUN_Converter.Other;
+﻿using LUN_Converter.Files;
+using LUN_Converter.Other;
 using System.Windows;
 
 namespace LUN_Converter.ViewModel
@@ -17,6 +18,7 @@ namespace LUN_Converter.ViewModel
         private int progressMaximum; //Значение максимального значения прогресса
         private Visibility visibil; //Отображение имени файла
         private string nameFile; //Имя файла
+        private string[] contentFile; //Массив содержимого файла
         #endregion
 
         #region Constructors
@@ -149,7 +151,17 @@ namespace LUN_Converter.ViewModel
         /// </summary>
         public RelayCommand SelectFile_Click => new RelayCommand(obj =>
         {
-            
+            File file = new File();
+            if (file.OpenFile())
+            {
+                NameFile = file.Name;
+                contentFile = file.Content;
+                
+                Visibil = Visibility.Visible;
+                ConvertXML = true;
+                Indeterminate = true;
+                ProgressMaximum = contentFile.Length;
+            }
         });
 
         /// <summary>
