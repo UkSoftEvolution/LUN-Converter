@@ -6,7 +6,7 @@ namespace LUN_Converter.ViewModel
     /// <summary>
     /// ViewModel: Для MainView
     /// </summary>
-    public class MainViewModel
+    public class MainViewModel : MVVM
     {
         #region Commands
         /// <summary>
