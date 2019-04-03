@@ -83,7 +83,7 @@
                     <ProgressBar
                         IsIndeterminate="{Binding Indeterminate}"
                         Value="{Binding ProgressValue}"
-                        Maximum="{Binding ProgressMaximum}"
+                        Maximum="{Binding ProgressMaximum, UpdateSourceTrigger=PropertyChanged}"
                         Visibility="{Binding ElementName=nameFile, Path=Visibility}"
                         Background="{x:Null}"
                         BorderBrush="{x:Null}"
@@ -92,7 +92,7 @@
                         Height="4"/>
                 </Grid>
                 <!--BUTTON "Save file"-->
-                <Grid Margin="0 0 0 5">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="35"/>
                         <ColumnDefinition Width="*"/>

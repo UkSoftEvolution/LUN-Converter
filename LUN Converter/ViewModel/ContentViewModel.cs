@@ -1,5 +1,7 @@
 ﻿using LUN_Converter.Files;
 using LUN_Converter.Other;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace LUN_Converter.ViewModel
@@ -34,7 +36,7 @@ namespace LUN_Converter.ViewModel
 
             Indeterminate = false;
             ProgressValue = 0;
-            progressMaximum = 1;
+            progressMaximum = 100;
             Visibil = Visibility.Collapsed;
         }
         #endregion
@@ -169,7 +171,25 @@ namespace LUN_Converter.ViewModel
         /// </summary>
         public RelayCommand ConvertXML_Click => new RelayCommand(obj =>
         {
+            Task.Factory.StartNew(() =>
+            {
+                SelectFile = false;
+                ConvertXML = false;
+                Indeterminate = false;
 
+                foreach (var cont in contentFile)
+                {
+                    string[] data = cont.Split('\t');
+                    ProgressValue++;
+                    Thread.Sleep(500);
+                }
+
+                SelectFile = true;
+                ConvertXML = true;
+                ProgressValue = 0;
+                Indeterminate = true;
+                SaveFile = true;
+            });
         });
 
         /// <summary>
