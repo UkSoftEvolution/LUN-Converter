@@ -46,7 +46,7 @@
                     </Grid>
                 </Grid>
                 <!--NAME FILE-->
-                <Grid Margin="0 0 0 5" Visibility="{Binding Visibil}">
+                <Grid x:Name="nameFile" Margin="0 0 0 5" Visibility="{Binding Visibil}">
                     <TextBlock
                         Foreground="{StaticResource Button.Content.Disabled.Foreground}"
                         FontFamily="{StaticResource Fonts.BaseFont}"
@@ -84,10 +84,12 @@
                         IsIndeterminate="{Binding Indeterminate}"
                         Value="{Binding ProgressValue}"
                         Maximum="{Binding ProgressMaximum}"
+                        Visibility="{Binding ElementName=nameFile, Path=Visibility}"
                         Background="{x:Null}"
+                        BorderBrush="{x:Null}"
                         Foreground="#FF7AAD00"
                         BorderThickness="0"
-                        Height="2"/>
+                        Height="4"/>
                 </Grid>
                 <!--BUTTON "Save file"-->
                 <Grid Margin="0 0 0 5">
