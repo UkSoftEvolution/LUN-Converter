@@ -147,6 +147,21 @@ namespace LUN_Converter.ViewModel
         }
         #endregion
 
+        #region Function
+        /// <summary>
+        /// Функция для конвертирования TXT файла в XML
+        /// </summary>
+        private void Convert()
+        {
+            foreach (var cont in contentFile)
+            {
+                string[] data = cont.Split('\t');
+                ProgressValue++;
+                Thread.Sleep(50);
+            }
+        }
+        #endregion
+
         #region Commands
         /// <summary>
         /// Клик по кнопке "Выбрать файл"
@@ -183,12 +198,7 @@ namespace LUN_Converter.ViewModel
                 ConvertXML = false;
                 Indeterminate = false;
 
-                foreach (var cont in contentFile)
-                {
-                    string[] data = cont.Split('\t');
-                    ProgressValue++;
-                    Thread.Sleep(50);
-                }
+                Convert();
 
                 SelectFile = true;
                 ConvertXML = true;
