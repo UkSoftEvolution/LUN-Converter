@@ -189,6 +189,8 @@ namespace LUN_Converter.ViewModel
                 ProgressValue = 0;
                 Indeterminate = true;
                 SaveFile = true;
+
+                MessageBox.Show("Конвертирование файла завершено", "Конвертация", MessageBoxButton.OK, MessageBoxImage.Information);
             });
         });
 
