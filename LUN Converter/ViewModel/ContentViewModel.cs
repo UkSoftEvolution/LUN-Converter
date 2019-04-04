@@ -36,7 +36,7 @@ namespace LUN_Converter.ViewModel
 
             Indeterminate = false;
             ProgressValue = 0;
-            progressMaximum = 100;
+            ProgressMaximum = 1;
             Visibil = Visibility.Collapsed;
         }
         #endregion
@@ -116,7 +116,7 @@ namespace LUN_Converter.ViewModel
             set
             {
                 progressMaximum = value;
-                OnPropertyChanged(nameof(progressValue));
+                OnPropertyChanged(nameof(progressMaximum));
             }
         }
 
@@ -158,10 +158,16 @@ namespace LUN_Converter.ViewModel
             {
                 NameFile = file.Name;
                 contentFile = file.Content;
-                
-                Visibil = Visibility.Visible;
-                ConvertXML = true;
-                Indeterminate = true;
+
+                if (SaveFile)
+                    SaveFile = false;
+                else
+                {
+                    Visibil = Visibility.Visible;
+                    ConvertXML = true;
+                    Indeterminate = true;
+                }
+
                 ProgressMaximum = contentFile.Length;
             }
         });
@@ -181,7 +187,7 @@ namespace LUN_Converter.ViewModel
                 {
                     string[] data = cont.Split('\t');
                     ProgressValue++;
-                    Thread.Sleep(500);
+                    Thread.Sleep(50);
                 }
 
                 SelectFile = true;
