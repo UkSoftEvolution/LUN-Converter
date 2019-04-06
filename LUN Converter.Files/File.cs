@@ -1,5 +1,8 @@
 ﻿using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace LUN_Converter.Files
 {
@@ -41,6 +44,30 @@ namespace LUN_Converter.Files
                     {
                         var cont = reader.ReadToEnd();
                         content = cont.Split('\n');
+                    }
+
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
+        public bool SaveFile(string nameFile, XmlSerializer xmlSerializer, object data)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                string[] vs = nameFile.Split('.');
+                saveFileDialog.FileName = vs[0];
+                saveFileDialog.Filter = "XML Files (*.xml)|*.xml";
+                saveFileDialog.FilterIndex = 1;
+                saveFileDialog.RestoreDirectory = true;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    using (Stream stream = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        xmlSerializer.Serialize(stream, data);
                     }
 
                     return true;

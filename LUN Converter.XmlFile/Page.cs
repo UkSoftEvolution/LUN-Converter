@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace LUN_Converter.XmlFile
 {
     /// <summary>
     /// Класс для работы с структурой XML файла
     /// </summary>
-    public class Page
+    public class page
     {
         #region Fields
         /// <summary>
@@ -23,7 +24,7 @@ namespace LUN_Converter.XmlFile
         /// <summary>
         /// Конструктор по умолчанию для инициализации переменных
         /// </summary>
-        public Page()
+        public page()
         {
             generation_time = ConvertIOS();
             announcements = new List<announcement>();

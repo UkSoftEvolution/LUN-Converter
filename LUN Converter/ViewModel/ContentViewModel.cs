@@ -24,6 +24,7 @@ namespace LUN_Converter.ViewModel
         private Visibility visibil; //Отображение имени файла
         private string nameFile; //Имя файла
         private string[] contentFile; //Массив содержимого файла
+        private page pageLUN; //Фид для сайта LUN
         #endregion
 
         #region Constructors
@@ -170,7 +171,7 @@ namespace LUN_Converter.ViewModel
         /// </summary>
         private void Convert()
         {
-            Page page = new Page();
+            pageLUN = new page();
 
             foreach (var cont in contentFile)
             {
@@ -246,7 +247,9 @@ namespace LUN_Converter.ViewModel
         /// </summary>
         public RelayCommand SaveFile_Click => new RelayCommand(obj =>
         {
-
+            File file = new File();
+            if (file.SaveFile(NameFile, new System.Xml.Serialization.XmlSerializer(typeof(page)), pageLUN))
+                MessageBox.Show("Файл успешно сохранён", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
         });
         #endregion
     }
