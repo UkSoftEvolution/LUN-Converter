@@ -138,6 +138,10 @@
       <Project>{f183a13c-a1f8-4567-9366-5fc2d9f48079}</Project>
       <Name>LUN Converter.Files</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LUN Converter.XmlFile\LUN Converter.XmlFile.csproj">
+      <Project>{20e20a9b-0080-4f17-9f5e-f38765140764}</Project>
+      <Name>LUN Converter.XmlFile</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

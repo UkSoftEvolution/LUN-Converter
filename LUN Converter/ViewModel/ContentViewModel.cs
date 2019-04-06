@@ -1,5 +1,6 @@
 ﻿using LUN_Converter.Files;
 using LUN_Converter.Other;
+using LUN_Converter.XmlFile;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -169,6 +170,8 @@ namespace LUN_Converter.ViewModel
         /// </summary>
         private void Convert()
         {
+            Page page = new Page();
+
             foreach (var cont in contentFile)
             {
                 string[] data = cont.Split('\t');
