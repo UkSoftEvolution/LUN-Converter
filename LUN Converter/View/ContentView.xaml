@@ -85,10 +85,10 @@
                         Value="{Binding ProgressValue}"
                         Maximum="{Binding ProgressMaximum, UpdateSourceTrigger=PropertyChanged}"
                         Visibility="{Binding ElementName=nameFile, Path=Visibility}"
-                        Height="{Binding ProgressHeight}"
+                        Height="3"
                         Background="{x:Null}"
                         BorderBrush="{x:Null}"
-                        Foreground="#FF7AAD00"
+                        Foreground="#FFFF8C00"
                         BorderThickness="0"/>
                 </Grid>
                 <!--BUTTON "Save file"-->

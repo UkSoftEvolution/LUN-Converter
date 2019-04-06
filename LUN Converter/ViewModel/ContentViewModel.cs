@@ -20,7 +20,6 @@ namespace LUN_Converter.ViewModel
         private bool indeterminate; //Индикатор ожидания прогресса
         private int progressValue; //Значение прогресса конвертации
         private int progressMaximum; //Значение максимального значения прогресса
-        private int progressHeight; //Ширина полосы прогреса
         private Visibility visibil; //Отображение имени файла
         private string nameFile; //Имя файла
         private string[] contentFile; //Массив содержимого файла
@@ -41,7 +40,6 @@ namespace LUN_Converter.ViewModel
             Indeterminate = false;
             ProgressValue = 0;
             ProgressMaximum = 1;
-            ProgressHeight = VersionOS();
             Visibil = Visibility.Collapsed;
         }
         #endregion
@@ -126,19 +124,6 @@ namespace LUN_Converter.ViewModel
         }
 
         /// <summary>
-        /// Ширина полосы прогреса
-        /// </summary>
-        public int ProgressHeight
-        {
-            get => progressHeight;
-            set
-            {
-                progressHeight = value;
-                OnPropertyChanged(nameof(progressHeight));
-            }
-        }
-
-        /// <summary>
         /// Отображение имени файла
         /// </summary>
         public Visibility Visibil
@@ -179,18 +164,6 @@ namespace LUN_Converter.ViewModel
                 ProgressValue++;
                 Thread.Sleep(50);
             }
-        }
-
-        /// <summary>
-        /// Определение версии ОС
-        /// </summary>
-        /// <returns>Возвращает ширину для прогресса в зависимости от ОС (в пикселях)</returns>
-        private int VersionOS()
-        {
-            if (Environment.OSVersion.Version.Major == 10)
-                return 2;
-            else
-                return 4;
         }
         #endregion
 
