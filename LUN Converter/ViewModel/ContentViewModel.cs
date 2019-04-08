@@ -1,8 +1,6 @@
 ﻿using LUN_Converter.Files;
 using LUN_Converter.Other;
 using LUN_Converter.XmlFile;
-using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -150,7 +148,7 @@ namespace LUN_Converter.ViewModel
         }
         #endregion
 
-        #region Function
+        #region Functions
         /// <summary>
         /// Функция для конвертирования TXT файла в XML
         /// </summary>
@@ -161,8 +159,90 @@ namespace LUN_Converter.ViewModel
             foreach (var cont in contentFile)
             {
                 string[] data = cont.Split('\t');
-                ProgressValue++;
-                Thread.Sleep(50);
+
+                announcement ann = new announcement();
+                for (int index = 0; index < data.Length; index++)
+                {
+                    switch (index)
+                    {
+                        case 0: break;
+                        case 1: break;
+                        case 2: break;
+                        case 3:
+                            {
+                                ann.rajon = data[index];
+                                break;
+                            }
+                        case 4: break;
+                        case 5:
+                            {
+                                ann.street = data[index];
+                                break;
+                            }
+                        case 6: break;
+                        case 7: break;
+                        case 8: break;
+                        case 9: break;
+                        case 10: break;
+                        case 11:
+                            {
+                                ann.room_type = data[index];
+                                break;
+                            }
+                        case 12: break;
+                        case 13: break;
+                        case 14: break;
+                        case 15: break;
+                        case 16: break;
+                        case 17:
+                        case 18:
+                        case 19:
+                        case 20:
+                            {
+                                if (ann.phones == null)
+                                    ann.phones = data[index];
+                                else
+                                {
+                                    if (data[index].Length == 0)
+                                        continue;
+                                    else
+                                        ann.phones += $", {data[index]}";
+                                }
+
+                                break;
+                            }
+                        case 21: break;
+                        case 22: break;
+                        case 23: break;
+                        case 24: break;
+                        case 25: break;
+                        case 26: break;
+                        case 27: break;
+                        default:
+                            {
+                                var imgData = data[index].Split('.');
+                                if (imgData.Length == 2)
+                                {
+                                    if (imgData[1] == "jpg")
+                                    {
+                                        img i = new img();
+                                        i.image = data[index];
+                                        object image = data[index];
+                                        ann.images.Add(image);
+                                    }
+                                    else
+                                        continue;
+                                }
+                                else
+                                    continue;
+
+                                break;
+                            }
+                    }
+                }
+                pageLUN.announcements.Add(ann);
+
+                ProgressValue = pageLUN.announcements.Count;
             }
         }
         #endregion

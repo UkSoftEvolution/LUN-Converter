@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="announcement.cs" />
+    <Compile Include="img.cs" />
     <Compile Include="page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
