@@ -1,6 +1,7 @@
 ﻿using LUN_Converter.Files;
 using LUN_Converter.Other;
 using LUN_Converter.XmlFile;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -152,97 +153,178 @@ namespace LUN_Converter.ViewModel
         /// <summary>
         /// Функция для конвертирования TXT файла в XML
         /// </summary>
-        private void Convert()
+        private void ConvertTo()
         {
             pageLUN = new page();
 
-            foreach (var cont in contentFile)
+            foreach (string cont in contentFile)
             {
-                string[] data = cont.Split('\t');
+                announcement ann = null;
+                bool error = false;
 
-                announcement ann = new announcement();
-                for (int index = 0; index < data.Length; index++)
+                try
                 {
-                    switch (index)
+                    string[] data = cont.Split('\t');
+                    if (NameFile == "kv.txt")
                     {
-                        case 0: break;
-                        case 1: break;
-                        case 2: break;
-                        case 3:
-                            {
-                                ann.rajon = data[index];
-                                break;
-                            }
-                        case 4: break;
-                        case 5:
-                            {
-                                ann.street = data[index];
-                                break;
-                            }
-                        case 6: break;
-                        case 7: break;
-                        case 8: break;
-                        case 9: break;
-                        case 10: break;
-                        case 11:
-                            {
-                                ann.room_type = data[index];
-                                break;
-                            }
-                        case 12: break;
-                        case 13: break;
-                        case 14: break;
-                        case 15: break;
-                        case 16: break;
-                        case 17:
-                        case 18:
-                        case 19:
-                        case 20:
-                            {
-                                if (ann.phones == null)
-                                    ann.phones = data[index];
-                                else
-                                {
-                                    if (data[index].Length == 0)
-                                        continue;
-                                    else
-                                        ann.phones += $", {data[index]}";
-                                }
+                        //Инициализируем данные для квартир
+                        ann = new announcement()
+                        {
+                            contract_type = "Продажа",
+                            realty_type = "Квартира",
+                            currency = "у.е.",
+                            rajon = data[3], //Получаем район
+                            street = data[5], //Получаем улицу
+                            room_count = Convert.ToInt16(data[1][0].ToString()), //Получаем количество комнат
+                            floor = Convert.ToInt16(data[6]), //Получаем этаж
+                            floor_count = Convert.ToInt16(data[7]), //Получаем этажность дома
+                            total_area = Convert.ToDouble(data[8]), //Получаем общую площадь, кв. м.
+                            living_area = Convert.ToDouble(data[9]), //Получаем жилую площадь, кв. м.
+                            kitchen_area = Convert.ToDouble(data[10]), //Получаем площадь кухни, кв. м.
+                            room_type = data[11], //Получаем тип комнат
+                            wall_type = data[12], //Получаем тип стен
+                            text = $"{data[0]} {data[23]}" //Получаем текст объявления
+                        };
 
-                                break;
-                            }
-                        case 21: break;
-                        case 22: break;
-                        case 23: break;
-                        case 24: break;
-                        case 25: break;
-                        case 26: break;
-                        case 27: break;
-                        default:
-                            {
-                                var imgData = data[index].Split('.');
-                                if (imgData.Length == 2)
-                                {
-                                    if (imgData[1] == "jpg")
-                                    {
-                                        img i = new img();
-                                        i.image = data[index];
-                                        object image = data[index];
-                                        ann.images.Add(image);
-                                    }
-                                    else
-                                        continue;
-                                }
-                                else
-                                    continue;
-
-                                break;
-                            }
+                        #region Определяем есть ли балкон
+                        if (data[15] != "Балк. НЕТ")
+                            ann.has_balcony = true;
+                        #endregion
                     }
-                }
-                pageLUN.announcements.Add(ann);
+                    else
+                    {
+                        //Инициализируем данные для домов
+                        ann = new announcement()
+                        {
+                            contract_type = "Продажа",
+                            currency = "у.е.",
+                            rajon = data[3], //Получаем район
+                            street = data[5], //Получаем улицу
+                            house = data[6], //Номер дома
+                            total_area = Convert.ToDouble(data[7]), //Получаем общую площадь, кв. м.
+                            land_area = Convert.ToDouble(data[8]), //Получаем площадь участка, сотка
+                            room_count = Convert.ToInt16(data[9]), //Получаем количество комнат
+                            floor_count = Convert.ToInt16(data[10]), //Получаем этажность дома
+                            wall_type = data[11], //Получаем тип стен
+                            text = $"{data[0]} {data[23]}" //Получаем текст объявления
+                        };
 
-                ProgressValue = pageLUN.announcements.Count;
+                        #region Тип недвижимости
+                        switch (data[1])
+                        {
+                            case "Уч":
+                                {
+                                    ann.realty_type = "Участок";
+                                    break;
+                                }
+                            case "Д":
+                                {
+                                    ann.realty_type = "Дом";
+                                    break;
+                                }
+                            case "Дача":
+                                {
+                                    ann.realty_type = "Дача";
+                                    break;
+                                }
+                            case "Д1/2":
+                                {
+                                    ann.realty_type = "1/2 часть дома";
+                                    break;
+                                }
+                            case "Д1/3":
+                                {
+                                    ann.realty_type = "1/3 часть дома";
+                                    break;
+                                }
+                            case "Д2/3":
+                                {
+                                    ann.realty_type = "2/3 часть дома";
+                                    break;
+                                }
+                        }
+                        #endregion
+                    }
+
+                    #region Получаем цену
+                    var pr = data[2].Split('.');
+                    if (pr.Length == 1)
+                        ann.price = Convert.ToInt32(pr[0]) * 1000;
+                    else
+                    {
+                        switch (pr[1].Length)
+                        {
+                            case 1:
+                                {
+                                    ann.price = Convert.ToInt32($"{pr[0]}{pr[1]}00");
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    ann.price = Convert.ToInt32($"{pr[0]}{pr[1]}0");
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    ann.price = Convert.ToInt32($"{pr[0]}{pr[1]}");
+                                    break;
+                                }
+                        }
+                    }
+                    #endregion
+
+                    #region Получаем номера телефонов
+                    for (int i = 17; i < 21; i++)
+                    {
+                        if (ann.phones == null)
+                            ann.phones = data[i];
+                        else
+                        {
+                            if (data[i].Length == 0)
+                                break;
+                            else
+                                ann.phones += $", {data[i]}";
+                        }
+                    }
+                    #endregion
+
+                    #region Получаем дату добавления
+                    string[] date = data[22].Split('.');
+                    DateTime dateTime = new DateTime(Convert.ToInt16(date[2]), Convert.ToInt16(date[1]), Convert.ToInt16(date[0]));
+                    ann.add_time = dateTime.ToString("yyyy-MM-ddTzzz");
+                    #endregion
+
+                    #region Получаем дату обновления
+                    date = data[21].Split('.');
+                    dateTime = new DateTime(Convert.ToInt16(date[2]), Convert.ToInt16(date[1]), Convert.ToInt16(date[0]));
+                    ann.update_time = dateTime.ToString("yyyy-MM-ddTzzz");
+                    #endregion
+
+                    #region Получаем изображения
+                    for (int i = 29; i < data.Length; i++)
+                    {
+                        if (data[i].Length == 0)
+                            break;
+                        else
+                        {
+                            var imgData = data[i].Split('.');
+                            if (imgData[1] == "jpg" || imgData[1] == "jpeg")
+                                ann.images.Add(data[i]);
+                        }
+                    }
+                    #endregion
+                }
+                catch
+                {
+                    error = true;
+                }
+                finally
+                {
+                    if (!error)
+                        pageLUN.announcements.Add(ann);
+
+                    ProgressValue++;
+                }
             }
         }
         #endregion
@@ -267,8 +349,6 @@ namespace LUN_Converter.ViewModel
                     ConvertXML = true;
                     Indeterminate = true;
                 }
-
-                ProgressMaximum = contentFile.Length;
             }
         });
 
@@ -283,7 +363,7 @@ namespace LUN_Converter.ViewModel
                 ConvertXML = false;
                 Indeterminate = false;
 
-                Convert();
+                ConvertTo();
 
                 SelectFile = true;
                 ConvertXML = true;
