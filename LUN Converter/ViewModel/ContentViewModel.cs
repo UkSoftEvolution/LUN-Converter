@@ -289,13 +289,13 @@ namespace LUN_Converter.ViewModel
                     #endregion
 
                     #region Получаем дату добавления
-                    string[] date = data[22].Split('.');
+                    string[] date = data[21].Split('.');
                     DateTime dateTime = new DateTime(Convert.ToInt16(date[2]), Convert.ToInt16(date[1]), Convert.ToInt16(date[0]));
                     ann.add_time = dateTime.ToString("yyyy-MM-ddTzzz");
                     #endregion
 
                     #region Получаем дату обновления
-                    date = data[21].Split('.');
+                    date = data[22].Split('.');
                     dateTime = new DateTime(Convert.ToInt16(date[2]), Convert.ToInt16(date[1]), Convert.ToInt16(date[0]));
                     ann.update_time = dateTime.ToString("yyyy-MM-ddTzzz");
                     #endregion
