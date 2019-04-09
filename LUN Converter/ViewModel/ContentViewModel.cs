@@ -309,7 +309,7 @@ namespace LUN_Converter.ViewModel
                         {
                             var imgData = data[i].Split('.');
                             if (imgData[1] == "jpg" || imgData[1] == "jpeg")
-                                ann.images.Add(data[i]);
+                                ann.images.Add($"https://cabinet2015.in.ua/adverts/files/{data[i]}");
                         }
                     }
                     #endregion
