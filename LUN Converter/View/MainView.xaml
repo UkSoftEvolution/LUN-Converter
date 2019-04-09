@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <Grid Grid.ColumnSpan="3" Background="{StaticResource Colors.Background.Second}" Opacity="0.9"/>
+            <Grid Grid.ColumnSpan="3" Background="{StaticResource Colors.Background.Second}" Opacity="0.9" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
 
             <!--LOGO-->
             <Grid Grid.Column="0">
@@ -43,7 +43,7 @@
             <Grid Grid.Column="1">
                 <TextBlock
                     Style="{DynamicResource Title}"
-                    Text="LUN Converter"/>
+                    Text="LUN Converter" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
             </Grid>
 
             <!--WINDOW BUTTONS-->

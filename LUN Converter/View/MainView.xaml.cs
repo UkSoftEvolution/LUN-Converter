@@ -11,5 +11,7 @@ namespace LUN_Converter
         /// Конструктор формы для инициализации компонентов
         /// </summary>
         public MainWindow() => InitializeComponent();
+
+        private void Grid_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => DragMove();
     }
 }
