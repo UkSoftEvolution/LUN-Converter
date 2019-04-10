@@ -377,6 +377,7 @@ namespace LUN_Converter.ViewModel
             {
                 dataFiles = openFile.Item2;
 
+                NameFile = null;
                 foreach (var data in dataFiles)
                 {
                     if (NameFile == null)
