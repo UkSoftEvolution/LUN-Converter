@@ -1,7 +1,6 @@
-﻿using System.IO;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace LUN_Converter.Files
@@ -11,54 +10,56 @@ namespace LUN_Converter.Files
     /// </summary>
     public class File
     {
-        #region Fields
-        private string name; //Имя файла
-        private string path; //Путь к файлу
-        private string[] content; //Массив содержимого файла
-        #endregion
-
         #region Function
         /// <summary>
         /// Функция открытия файла
         /// </summary>
         /// <returns>Результат открытия файла</returns>
-        public bool OpenFile()
+        /// <returns>Данные файлов</returns>
+        public (bool, Dictionary<string, string[]>) OpenFile()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                //openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "txt files (*.txt)|*.txt";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
+                openFileDialog.Multiselect = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Get the path of specified file
-                    path = openFileDialog.FileName;
-                    name = openFileDialog.SafeFileName;
+                    Dictionary<string, string[]> dictionary = new Dictionary<string, string[]>();
 
-                    //Read the contents of the file into a stream
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
+                    foreach (var filePath in openFileDialog.FileNames)
                     {
-                        var cont = reader.ReadToEnd();
-                        content = cont.Split('\n');
-                    }
+                        openFileDialog.FileName = filePath;
 
-                    return true;
+                        var fileStream = openFileDialog.OpenFile();
+
+                        using (StreamReader reader = new StreamReader(fileStream))
+                        {
+                            var cont = reader.ReadToEnd();
+                            dictionary.Add(openFileDialog.SafeFileName, cont.Split('\n'));
+                        }
+                    }                   
+
+                    return (true, dictionary);
                 }
                 else
-                    return false;
+                    return (false, null);
             }
         }
 
-        public bool SaveFile(string nameFile, XmlSerializer xmlSerializer, object data)
+        /// <summary>
+        /// Сохранение файла
+        /// </summary>
+        /// <param name="xmlSerializer"></param>
+        /// <param name="data"></param>
+        /// <returns>Результат открытия файла</returns>
+        public bool SaveFile(XmlSerializer xmlSerializer, object data)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                string[] vs = nameFile.Split('.');
-                saveFileDialog.FileName = vs[0];
+                saveFileDialog.FileName = "avers";
                 saveFileDialog.Filter = "XML Files (*.xml)|*.xml";
                 saveFileDialog.FilterIndex = 1;
                 saveFileDialog.RestoreDirectory = true;
@@ -76,23 +77,6 @@ namespace LUN_Converter.Files
                     return false;
             }
         }
-        #endregion
-
-        #region Methods
-        /// <summary>
-        /// Имя файла
-        /// </summary>
-        public string Name { get => name; }
-
-        /// <summary>
-        /// Путь к файлу
-        /// </summary>
-        public string Path { get => path; }
-
-        /// <summary>
-        /// Содержимое файла
-        /// </summary>
-        public string[] Content { get => content; }
         #endregion
     }
 }
