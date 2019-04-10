@@ -14,14 +14,18 @@ namespace LUN_Converter.ViewModel
     public class ContentViewModel : MVVM
     {
         #region Fields
-        private bool selectFile; //Доступность кнопки "Выбрать файл"
-        private bool convertXML; //Доступность кнопки "Конвертировать в XML"
-        private bool saveFile; //Доступность кнопки "Сохранить файл"
+        //Доступность кнопок
+        private bool selectFile; //Кнопка "Выбрать файл"
+        private bool convertXML; //Кнопка  "Конвертировать в XML"
+        private bool saveFile; //Кнопка  "Сохранить файл"
+        //Прогресс
         private bool indeterminate; //Индикатор ожидания прогресса
         private int progressValue; //Значение прогресса конвертации
         private int progressMaximum; //Значение максимального значения прогресса
-        private Visibility visibil; //Отображение имени файла
+
         private string nameFile; //Имя файла
+        private Visibility visibil; //Отображение имени файла
+
         private Dictionary<string, string[]> dataFiles; //Данные с файлов
         private page pageLUN; //Фид для сайта LUN
         #endregion
