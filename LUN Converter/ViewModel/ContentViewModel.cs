@@ -1,6 +1,7 @@
 ﻿using LUN_Converter.Files;
 using LUN_Converter.Other;
 using LUN_Converter.XmlFile;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -181,7 +182,7 @@ namespace LUN_Converter.ViewModel
                                 contract_type = "Продажа",
                                 realty_type = "Квартира",
                                 currency = "у.е.",
-                                district = data[3], //Получаем административный район города
+                                district = FileCSV(data[3]), //Получаем административный район города
                                 street = data[5], //Получаем улицу
                                 room_count = Convert.ToInt16(data[1][0].ToString()), //Получаем количество комнат
                                 floor = Convert.ToInt16(data[6]), //Получаем этаж
@@ -207,7 +208,7 @@ namespace LUN_Converter.ViewModel
                                 url = $"http://avers.in.ua/house/{data[0]}.htm", //Получаем ссылку на объявление
                                 contract_type = "Продажа",
                                 currency = "у.е.",
-                                district = data[3], //Получаем административный район города
+                                district = FileCSV(data[3]), //Получаем административный район города
                                 street = data[5], //Получаем улицу
                                 house = data[6], //Номер дома
                                 total_area = Convert.ToDouble(data[7]), //Получаем общую площадь, кв. м.
@@ -335,6 +336,30 @@ namespace LUN_Converter.ViewModel
                         ProgressValue++;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Нахождение поля district в csv файле
+        /// </summary>
+        /// <param name="value">Параметр поиска</param>
+        /// <returns>Возвращает district</returns>
+        public string FileCSV(string value)
+        {
+            using (TextFieldParser parser = new TextFieldParser("Districts.csv"))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(";");
+                while (!parser.EndOfData)
+                {
+                    //Processing row
+                    string[] fields = parser.ReadFields();
+
+                    if (fields[3] == value)
+                        return fields[1];
+                }
+
+                return "";
             }
         }
         #endregion
