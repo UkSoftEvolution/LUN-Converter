@@ -26,9 +26,21 @@ namespace LUN_Converter.XmlFile
         /// </summary>
         public string realty_type;
         /// <summary>
+        /// Область
+        /// </summary>
+        public string region;
+        /// <summary>
         /// Район области
         /// </summary>
         public string rajon;
+        /// <summary>
+        /// Населённый пункт
+        /// </summary>
+        public string city;
+        /// <summary>
+        /// Административный район города
+        /// </summary>
+        public string district;
         /// <summary>
         /// Улица
         /// </summary>
@@ -108,7 +120,13 @@ namespace LUN_Converter.XmlFile
         /// <summary>
         /// Конструктор по умолчанию для инициализации переменных
         /// </summary>
-        public announcement() => images = new List<string>();
+        public announcement()
+        {
+            images = new List<string>();
+            city = "Харьков";
+            region = "Харьковская область";
+            rajon = "Харьковский район";
+        }
         #endregion
     }
 }
