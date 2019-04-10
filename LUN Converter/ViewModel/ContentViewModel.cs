@@ -177,6 +177,7 @@ namespace LUN_Converter.ViewModel
                             //Инициализируем данные для квартир
                             ann = new announcement()
                             {
+                                url = $"http://avers.in.ua/flat/{data[0]}.htm", //Получаем ссылку на объявление
                                 contract_type = "Продажа",
                                 realty_type = "Квартира",
                                 currency = "у.е.",
@@ -203,6 +204,7 @@ namespace LUN_Converter.ViewModel
                             //Инициализируем данные для домов
                             ann = new announcement()
                             {
+                                url = $"http://avers.in.ua/house/{data[0]}.htm", //Получаем ссылку на объявление
                                 contract_type = "Продажа",
                                 currency = "у.е.",
                                 rajon = data[3], //Получаем район

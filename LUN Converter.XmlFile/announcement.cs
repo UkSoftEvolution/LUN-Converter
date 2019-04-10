@@ -94,6 +94,10 @@ namespace LUN_Converter.XmlFile
         /// </summary>
         public string phones;
         /// <summary>
+        /// Адрес страницы с объявлением на вашем сайте
+        /// </summary>
+        public string url;
+        /// <summary>
         /// Блок-контейнер для ссылок на изображения
         /// </summary>
         [XmlArrayItem("image")]
