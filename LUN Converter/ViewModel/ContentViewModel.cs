@@ -200,7 +200,7 @@ namespace LUN_Converter.ViewModel
                             if (ann.title[ann.title.Length - 2] == 'л' && ann.title[ann.title.Length - 3] == 'у')
                                 ann.title += $"{tt[1]}.";
 
-                            #region Получаем город
+                            #region Получаем город и район
                             using (TextFieldParser parser = new TextFieldParser("Districts.csv"))
                             {
                                 parser.TextFieldType = FieldType.Delimited;
@@ -215,9 +215,11 @@ namespace LUN_Converter.ViewModel
                                         else
                                             ann.city = data[3];
 
-                                        ann.rajon = data[2];
+                                        if (fields[2] == "Харьков" && fields[1] == "Харьковский")
+                                            ann.rajon = "Харьковский район";
+                                        else
+                                            ann.rajon = data[3];
                                     }
-
                                 }
                             }
                             #endregion
@@ -276,6 +278,30 @@ namespace LUN_Converter.ViewModel
                             ann.title = $"{tt[0]}."; //Получаем заголовок
                             if (ann.title[ann.title.Length - 2] == 'л' && ann.title[ann.title.Length - 3] == 'у')
                                 ann.title += $"{tt[1]}.";
+
+                            #region Получаем город и район
+                            using (TextFieldParser parser = new TextFieldParser("Districts.csv"))
+                            {
+                                parser.TextFieldType = FieldType.Delimited;
+                                parser.SetDelimiters(";");
+                                while (!parser.EndOfData)
+                                {
+                                    string[] fields = parser.ReadFields();
+                                    if (fields[3] == data[3])
+                                    {
+                                        if (fields[2] == "Харьков")
+                                            ann.city = "Харьков";
+                                        else
+                                            ann.city = data[3];
+
+                                        if (fields[2] == "Харьков" && fields[1] == "Харьковский")
+                                            ann.rajon = "Харьковский район";
+                                        else
+                                            ann.rajon = data[3];
+                                    }
+                                }
+                            }
+                            #endregion
 
                             #region Тип недвижимости
                             switch (data[1])
