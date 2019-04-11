@@ -192,10 +192,13 @@ namespace LUN_Converter.ViewModel
                                 living_area = Convert.ToDouble(data[9]), //Получаем жилую площадь, кв. м.
                                 kitchen_area = Convert.ToDouble(data[10]), //Получаем площадь кухни, кв. м.
                                 room_type = data[11], //Получаем тип комнат
-                                title = $"{(data[23].Split('.'))[0]}", //Получаем заголовок
                                 text = $"{data[0]} {data[23]}" //Получаем текст объявления
-
                             };
+
+                            var tt = data[23].Split('.');
+                            ann.title = $"{tt[0]}."; //Получаем заголовок
+                            if (ann.title[ann.title.Length - 2] == 'л' && ann.title[ann.title.Length - 3] == 'у')
+                                ann.title += $"{tt[1]}.";
 
                             #region Определяем есть ли балкон
                             if (data[15] != "Балк. НЕТ")
@@ -244,9 +247,13 @@ namespace LUN_Converter.ViewModel
                                 land_area = Convert.ToDouble(data[8]), //Получаем площадь участка, сотка
                                 room_count = Convert.ToInt16(data[9]), //Получаем количество комнат
                                 floor_count = Convert.ToInt16(data[10]), //Получаем этажность дома
-                                title = $"{(data[23].Split('.'))[0]}", //Получаем заголовок
                                 text = $"{data[0]} {data[23]}" //Получаем текст объявления
                             };
+
+                            var tt = data[23].Split('.');
+                            ann.title = $"{tt[0]}."; //Получаем заголовок
+                            if (ann.title[ann.title.Length - 2] == 'л' && ann.title[ann.title.Length - 3] == 'у')
+                                ann.title += $"{tt[1]}.";
 
                             #region Тип недвижимости
                             switch (data[1])
