@@ -191,13 +191,38 @@ namespace LUN_Converter.ViewModel
                                 living_area = Convert.ToDouble(data[9]), //Получаем жилую площадь, кв. м.
                                 kitchen_area = Convert.ToDouble(data[10]), //Получаем площадь кухни, кв. м.
                                 room_type = data[11], //Получаем тип комнат
-                                wall_type = data[12], //Получаем тип стен
                                 text = $"{data[0]} {data[23]}" //Получаем текст объявления
                             };
 
                             #region Определяем есть ли балкон
                             if (data[15] != "Балк. НЕТ")
                                 ann.has_balcony = true;
+                            #endregion
+
+                            #region Получаем тип стен
+                            switch (data[12])
+                            {
+                                case "кир.":
+                                    {
+                                        ann.wall_type = "Кирпич";
+                                        break;
+                                    }
+                                case "пан.":
+                                    {
+                                        ann.wall_type = "Панель";
+                                        break;
+                                    }
+                                case "монол":
+                                    {
+                                        ann.wall_type = "Монолит";
+                                        break;
+                                    }
+                                case "блоч.":
+                                    {
+                                        ann.wall_type = "Блочный";
+                                        break;
+                                    }
+                            }
                             #endregion
                         }
                         else
@@ -215,7 +240,6 @@ namespace LUN_Converter.ViewModel
                                 land_area = Convert.ToDouble(data[8]), //Получаем площадь участка, сотка
                                 room_count = Convert.ToInt16(data[9]), //Получаем количество комнат
                                 floor_count = Convert.ToInt16(data[10]), //Получаем этажность дома
-                                wall_type = data[11], //Получаем тип стен
                                 text = $"{data[0]} {data[23]}" //Получаем текст объявления
                             };
 
@@ -250,6 +274,32 @@ namespace LUN_Converter.ViewModel
                                 case "Д2/3":
                                     {
                                         ann.realty_type = "2/3 часть дома";
+                                        break;
+                                    }
+                            }
+                            #endregion
+
+                            #region Получаем тип стен
+                            switch (data[11])
+                            {
+                                case "кир.":
+                                    {
+                                        ann.wall_type = "Кирпич";
+                                        break;
+                                    }
+                                case "пан.":
+                                    {
+                                        ann.wall_type = "Панель";
+                                        break;
+                                    }
+                                case "монол":
+                                    {
+                                        ann.wall_type = "Монолит";
+                                        break;
+                                    }
+                                case "блоч.":
+                                    {
+                                        ann.wall_type = "Блочный";
                                         break;
                                     }
                             }
