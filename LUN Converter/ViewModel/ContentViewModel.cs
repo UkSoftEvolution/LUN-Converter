@@ -213,9 +213,9 @@ namespace LUN_Converter.ViewModel
                                         if (fields[2] == "Харьков")
                                             ann.city = "Харьков";
                                         else
-                                            ann.city = data[3];
+                                            ann.city = data[4];
 
-                                        if (fields[2] == "Харьков" && fields[1] == "Харьковский")
+                                        if (fields[2] == "Харьков")
                                             ann.rajon = "Харьковский район";
                                         else
                                             ann.rajon = data[3];
