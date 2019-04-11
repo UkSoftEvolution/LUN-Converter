@@ -110,6 +110,10 @@ namespace LUN_Converter.XmlFile
         /// </summary>
         public string contact_name;
         /// <summary>
+        /// Внутренние код объекта агентства недвижимости
+        /// </summary>
+        public string agency_code;
+        /// <summary>
         /// Адрес страницы с объявлением на вашем сайте
         /// </summary>
         public string url;

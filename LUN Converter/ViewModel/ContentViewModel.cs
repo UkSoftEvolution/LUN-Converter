@@ -182,6 +182,7 @@ namespace LUN_Converter.ViewModel
                                 contract_type = "Продажа",
                                 realty_type = "Квартира",
                                 currency = "у.е.",
+                                agency_code = data[0], //Получаем код
                                 district = FileCSV(data[3]), //Получаем административный район города
                                 street = data[5], //Получаем улицу
                                 room_count = Convert.ToInt16(data[1][0].ToString()), //Получаем количество комнат
@@ -233,6 +234,7 @@ namespace LUN_Converter.ViewModel
                                 url = $"http://avers.in.ua/house/{data[0]}.htm", //Получаем ссылку на объявление
                                 contract_type = "Продажа",
                                 currency = "у.е.",
+                                agency_code = data[0], //Получаем код
                                 district = FileCSV(data[3]), //Получаем административный район города
                                 street = data[5], //Получаем улицу
                                 house = data[6], //Номер дома
