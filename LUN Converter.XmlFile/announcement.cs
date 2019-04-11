@@ -98,6 +98,10 @@ namespace LUN_Converter.XmlFile
         /// </summary>
         public bool has_balcony;
         /// <summary>
+        /// Заголовок объявления
+        /// </summary>
+        public string title;
+        /// <summary>
         /// Текст объявления
         /// </summary>
         public string text;
@@ -105,6 +109,14 @@ namespace LUN_Converter.XmlFile
         /// Контактные телефоны (Обязательный параметр)
         /// </summary>
         public string phones;
+        /// <summary>
+        /// Имя физ./юр. лица, которому принадлежат контактные данные
+        /// </summary>
+        public string contact_name;
+        /// <summary>
+        /// Внутренние код объекта агентства недвижимости
+        /// </summary>
+        public string agency_code;
         /// <summary>
         /// Адрес страницы с объявлением на вашем сайте
         /// </summary>
@@ -123,9 +135,10 @@ namespace LUN_Converter.XmlFile
         public announcement()
         {
             images = new List<string>();
-            city = "Харьков";
+
             region = "Харьковская область";
-            rajon = "Харьковский район";
+
+            contact_name = "АН Аверс";
         }
         #endregion
     }
