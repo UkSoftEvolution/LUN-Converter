@@ -106,6 +106,10 @@ namespace LUN_Converter.XmlFile
         /// </summary>
         public string phones;
         /// <summary>
+        /// Имя физ./юр. лица, которому принадлежат контактные данные
+        /// </summary>
+        public string contact_name;
+        /// <summary>
         /// Адрес страницы с объявлением на вашем сайте
         /// </summary>
         public string url;
@@ -126,6 +130,8 @@ namespace LUN_Converter.XmlFile
             city = "Харьков";
             region = "Харьковская область";
             rajon = "Харьковский район";
+
+            contact_name = "АН Аверс";
         }
         #endregion
     }
