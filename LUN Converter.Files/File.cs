@@ -33,16 +33,27 @@ namespace LUN_Converter.Files
                     {
                         openFileDialog.FileName = filePath;
 
-                        var fileStream = openFileDialog.OpenFile();
-
-                        using (StreamReader reader = new StreamReader(fileStream))
+                        try
                         {
-                            var cont = reader.ReadToEnd();
-                            dictionary.Add(openFileDialog.SafeFileName, cont.Split('\n'));
+                            var fileStream = openFileDialog.OpenFile();
+
+                            using (StreamReader reader = new StreamReader(fileStream))
+                            {
+                                var cont = reader.ReadToEnd();
+                                dictionary.Add(openFileDialog.SafeFileName, cont.Split('\n'));
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show($"Файл {openFileDialog.SafeFileName} не удалось обработать", "Ошибка файла", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            continue;
                         }
                     }                   
 
-                    return (true, dictionary);
+                    if (dictionary.Count == 0)
+                        return (true, null);
+                    else
+                        return (true, dictionary);
                 }
                 else
                     return (false, null);
