@@ -183,7 +183,6 @@ namespace LUN_Converter.ViewModel
                                 realty_type = "Квартира",
                                 currency = "у.е.",
                                 agency_code = data[0], //Получаем код
-                                district = FileCSV(data[3]), //Получаем административный район города
                                 street = data[5], //Получаем улицу
                                 room_count = Convert.ToInt16(data[1][0].ToString()), //Получаем количество комнат
                                 floor = Convert.ToInt16(data[6]), //Получаем этаж
@@ -211,7 +210,10 @@ namespace LUN_Converter.ViewModel
                                     if (fields[3] == data[3])
                                     {
                                         if (fields[2] == "Харьков")
+                                        {
                                             ann.city = "Харьков";
+                                            ann.district = FileCSV(data[3]); //Получаем административный район города
+                                        }
                                         else
                                             ann.city = data[4];
 
@@ -264,7 +266,6 @@ namespace LUN_Converter.ViewModel
                                 contract_type = "Продажа",
                                 currency = "у.е.",
                                 agency_code = data[0], //Получаем код
-                                district = FileCSV(data[3]), //Получаем административный район города
                                 street = data[5], //Получаем улицу
                                 house = data[6], //Номер дома
                                 total_area = Convert.ToDouble(data[7]), //Получаем общую площадь, кв. м.
@@ -290,7 +291,10 @@ namespace LUN_Converter.ViewModel
                                     if (fields[3] == data[3])
                                     {
                                         if (fields[2] == "Харьков")
+                                        {
                                             ann.city = "Харьков";
+                                            ann.district = FileCSV(data[3]); //Получаем административный район города
+                                        }
                                         else
                                             ann.city = data[3];
 
