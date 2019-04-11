@@ -135,9 +135,8 @@ namespace LUN_Converter.XmlFile
         public announcement()
         {
             images = new List<string>();
-            city = "Харьков";
+
             region = "Харьковская область";
-            rajon = "Харьковский район";
 
             contact_name = "АН Аверс";
         }

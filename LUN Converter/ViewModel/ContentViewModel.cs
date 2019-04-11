@@ -200,6 +200,28 @@ namespace LUN_Converter.ViewModel
                             if (ann.title[ann.title.Length - 2] == 'л' && ann.title[ann.title.Length - 3] == 'у')
                                 ann.title += $"{tt[1]}.";
 
+                            #region Получаем город
+                            using (TextFieldParser parser = new TextFieldParser("Districts.csv"))
+                            {
+                                parser.TextFieldType = FieldType.Delimited;
+                                parser.SetDelimiters(";");
+                                while (!parser.EndOfData)
+                                {
+                                    string[] fields = parser.ReadFields();
+                                    if (fields[3] == data[3])
+                                    {
+                                        if (fields[2] == "Харьков")
+                                            ann.city = "Харьков";
+                                        else
+                                            ann.city = data[3];
+
+                                        ann.rajon = data[2];
+                                    }
+
+                                }
+                            }
+                            #endregion
+
                             #region Определяем есть ли балкон
                             if (data[15] != "Балк. НЕТ")
                                 ann.has_balcony = true;
