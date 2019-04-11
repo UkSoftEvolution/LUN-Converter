@@ -192,7 +192,9 @@ namespace LUN_Converter.ViewModel
                                 living_area = Convert.ToDouble(data[9]), //Получаем жилую площадь, кв. м.
                                 kitchen_area = Convert.ToDouble(data[10]), //Получаем площадь кухни, кв. м.
                                 room_type = data[11], //Получаем тип комнат
+                                title = $"{(data[23].Split('.'))[0]}", //Получаем заголовок
                                 text = $"{data[0]} {data[23]}" //Получаем текст объявления
+
                             };
 
                             #region Определяем есть ли балкон
@@ -242,6 +244,7 @@ namespace LUN_Converter.ViewModel
                                 land_area = Convert.ToDouble(data[8]), //Получаем площадь участка, сотка
                                 room_count = Convert.ToInt16(data[9]), //Получаем количество комнат
                                 floor_count = Convert.ToInt16(data[10]), //Получаем этажность дома
+                                title = $"{(data[23].Split('.'))[0]}", //Получаем заголовок
                                 text = $"{data[0]} {data[23]}" //Получаем текст объявления
                             };
 

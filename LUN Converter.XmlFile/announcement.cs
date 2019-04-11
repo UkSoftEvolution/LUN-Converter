@@ -98,6 +98,10 @@ namespace LUN_Converter.XmlFile
         /// </summary>
         public bool has_balcony;
         /// <summary>
+        /// Заголовок объявления
+        /// </summary>
+        public string title;
+        /// <summary>
         /// Текст объявления
         /// </summary>
         public string text;
