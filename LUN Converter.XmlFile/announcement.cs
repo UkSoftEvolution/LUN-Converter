@@ -127,19 +127,5 @@ namespace LUN_Converter.XmlFile
         [XmlArrayItem("image")]
         public List<string> images;
         #endregion
-
-        #region Constructors
-        /// <summary>
-        /// Конструктор по умолчанию для инициализации переменных
-        /// </summary>
-        public announcement()
-        {
-            images = new List<string>();
-
-            region = "Харьковская область";
-
-            contact_name = "АН Аверс";
-        }
-        #endregion
     }
 }
