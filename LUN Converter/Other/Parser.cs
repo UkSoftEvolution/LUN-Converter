@@ -96,7 +96,7 @@ namespace LUN_Converter.Other
                 #endregion
 
                 #region Определяем расположение
-                var location = Location(Data[3]);
+                var location = Location(Data[3], Data[4]);
                 ann.rajon = location.Item1;
                 ann.city = location.Item2;
                 ann.district = location.Item3;
@@ -177,7 +177,7 @@ namespace LUN_Converter.Other
                 #endregion
 
                 #region Определяем расположение
-                var location = Location(Data[3]);
+                var location = Location(Data[3], Data[4]);
                 ann.rajon = location.Item1;
                 ann.city = location.Item2;
                 ann.district = location.Item3;
@@ -336,8 +336,9 @@ namespace LUN_Converter.Other
         /// Функция для определения расположения
         /// </summary>
         /// <param name="Value">Значение по которому нужно определять</param>
+        /// <param name="Landmark">Значение для ориентира</param>
         /// <returns>rajon, city, district</returns>
-        private (string, string, string) Location(string Value)
+        private (string, string, string) Location(string Value, string Landmark)
         {
             string rajon = null, city = null, district = null;
 
@@ -356,9 +357,9 @@ namespace LUN_Converter.Other
                             district = fields[1]; //Получаем административный район города
                         }
                         else
-                            city = Value;
+                            city = Landmark;
 
-                        if (fields[2] == "Харьков" && fields[1] == "Харьковский")
+                        if (fields[2] == "Харьков"/* && fields[1] == "Харьковский"*/)
                             rajon = "Харьковский район";
                         else
                             rajon = Value;
