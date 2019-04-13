@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>xml.ico</ApplicationIcon>
+    <ApplicationIcon>LUN Convertet.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -154,6 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="xml.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="LUN Convertet.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
