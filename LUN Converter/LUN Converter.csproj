@@ -98,6 +98,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Other\MVVM.cs" />
+    <Compile Include="Other\Parser.cs" />
     <Compile Include="Other\RelayCommand.cs" />
     <Compile Include="ViewModel\ContentViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
