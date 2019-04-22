@@ -89,7 +89,7 @@ namespace LUN_Converter.Other
                 ann.images = new List<string>(Images(Data, 29)); //Получаем изображения
 
                 #region Тип недвижимости
-                if (Data[1][1].ToString() == "г" || Data[1][1].ToString() == "и" || Data[1][1].ToString() == "п")
+                if (Data[1][1].ToString() == "г" || Data[1][1].ToString() == "п")
                     ann.realty_type = "Комната";
                 else
                     ann.realty_type = "Квартира";
