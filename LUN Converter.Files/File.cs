@@ -70,7 +70,7 @@ namespace LUN_Converter.Files
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.FileName = "avers";
+                saveFileDialog.FileName = "avers_lun";
                 saveFileDialog.Filter = "XML Files (*.xml)|*.xml";
                 saveFileDialog.FilterIndex = 1;
                 saveFileDialog.RestoreDirectory = true;
